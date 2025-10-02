@@ -13,10 +13,6 @@ const MovimentoSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    historico: {
-        type: [String],
-        required: false
-    },
 },{
     timestamps: true
 })

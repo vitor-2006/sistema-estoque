@@ -1,4 +1,4 @@
-import { Produto } from "./schemaProduto";
+import { Produto } from "./schemaProduto.js";
 
 export const verificPorIdProduto = async (id) => {
     try {
