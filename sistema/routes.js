@@ -29,7 +29,7 @@ routesProduto.post('/produto/:id/entrada', async (req, res) => {
 routesProduto.post('/produto/:id/saida', async (req, res) => {
     const { id } = req.params
     const { quantidade } = req.body
-    const newEntrada = await entradaMov(id, quantidade)
+    const newEntrada = await saidaMov(id, quantidade)
     if(!newEntrada) {
         return res.status(400).send({ message: 'produto não encontrado ou quantidade inválida' })
     } else {
