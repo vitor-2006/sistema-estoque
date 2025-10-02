@@ -2,6 +2,7 @@ import express from 'express'
 import { createProduto } from './postProduto.js'
 import { entradaMov } from './entrada.js'
 import { saidaMov } from './saida.js'
+import { historico } from './historico.js'
 
 const routesProduto = express.Router()
 
@@ -34,6 +35,16 @@ routesProduto.post('/produto/:id/saida', async (req, res) => {
         return res.status(400).send({ message: 'produto não encontrado ou quantidade inválida' })
     } else {
         return res.status(200).send({ message: 'saída registrada com sucesso', movimento: newEntrada })
+    }
+})
+
+routesProduto.get("/produto/:id/historico", async (req, res) => {
+    const { id } = req.params
+    const hist = await historico(id)
+    if(!hist) {
+        return res.status(400).send({ message: 'produto não encontrado' })
+    } else {
+        return res.status(200).send(hist) 
     }
 })
 
