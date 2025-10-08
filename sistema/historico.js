@@ -4,7 +4,7 @@ import { verificPorIdProduto } from "./verificar.js";
 export const historico = async(idProduto) => {
     try {
         const arrayProduto = await verificPorIdProduto(idProduto) 
-        if (arrayProduto.lenth === 0) {
+        if (arrayProduto.length === 0) {
             return false
         }
         return await Movimento.find({idProduto: idProduto})
