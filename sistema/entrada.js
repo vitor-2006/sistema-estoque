@@ -9,7 +9,7 @@ export const entradaMov = async(idProduto, quantidade) => {
             return false
         }
         await SomaProduto(idProduto, quantidade)
-        const newMovimento = new Movimento({idProduto, quantidade:quantidade, tipo:"entrada"})
+        const newMovimento = new Movimento({idProduto:idProduto, quantidade:quantidade, tipo:"entrada"})
         return await newMovimento.save()
     } catch(error) {
         console.error('Erro ao entrar estoque', error.message)

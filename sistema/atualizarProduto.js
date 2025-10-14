@@ -3,7 +3,7 @@ import { Produto } from "./schemaProduto.js";
 export const SomaProduto = async(id, quantidade) => {
     try {
         const produto = await Produto.findById(id).exec()
-        const soma = produto.quantidade + quantidade
+        const soma = parseInt(produto.quantidade) + parseInt(quantidade)
         const updatedProduto = await Produto.findByIdAndUpdate(
             id,
             { quantidade: soma },
@@ -19,7 +19,7 @@ export const SomaProduto = async(id, quantidade) => {
 export const menosProduto = async(id, quantidade) => {
     try {
         const produto = await Produto.findById(id).exec()
-        const menos = produto.quantidade - quantidade
+        const menos = parseInt(produto.quantidade) - parseInt(quantidade)
         const updatedProduto = await Produto.findByIdAndUpdate(
             id,
             { quantidade: menos },
