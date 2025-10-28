@@ -3,10 +3,11 @@ import { createProduto } from './postProduto.js'
 import { entradaMov } from './entrada.js'
 import { saidaMov } from './saida.js'
 import { historico } from './historico.js'
+import { middleWare } from '../middleware/authentication.js'
 
 const routesProduto = express.Router()
 
-routesProduto.post('/produto', async (req, res) => {
+routesProduto.post('/produto', middleWare, async (req, res) => {
     const { nome, quantidade } = req.body
     const newProduto = await createProduto(nome, quantidade)
     if(newProduto) {
@@ -16,7 +17,7 @@ routesProduto.post('/produto', async (req, res) => {
     }
 })
 
-routesProduto.post('/produto/:id/entrada', async (req, res) => {
+routesProduto.post('/produto/:id/entrada', middleWare, async (req, res) => {
     const { id } = req.params
     const { quantidade } = req.body
     const newEntrada = await entradaMov(id, quantidade)
@@ -27,7 +28,7 @@ routesProduto.post('/produto/:id/entrada', async (req, res) => {
     }
 })
 
-routesProduto.post('/produto/:id/saida', async (req, res) => {
+routesProduto.post('/produto/:id/saida', middleWare, async (req, res) => {
     const { id } = req.params
     const { quantidade } = req.body
     const newEntrada = await saidaMov(id, quantidade)
@@ -38,7 +39,7 @@ routesProduto.post('/produto/:id/saida', async (req, res) => {
     }
 })
 
-routesProduto.get("/produto/:id/historico", async (req, res) => {
+routesProduto.get("/produto/:id/historico", middleWare, async (req, res) => {
     const { id } = req.params
     const hist = await historico(id)
     if(!hist) {
