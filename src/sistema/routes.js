@@ -7,7 +7,7 @@ import { authMiddleware, Role } from '../middleware/authentication.js'
 
 const routesProduto = express.Router()
 
-routesProduto.post('/produto', authMiddleware(), async (req, res) => {
+routesProduto.post('/produto', authMiddleware(Role.ADMIN), async (req, res) => {
     const { nome, quantidade } = req.body
     const newProduto = await createProduto(nome, quantidade)
     if(newProduto) {

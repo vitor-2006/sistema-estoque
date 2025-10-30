@@ -5,7 +5,7 @@ import { verificPorIdProduto } from "./verificar.js";
 export const entradaMov = async(idProduto, quantidade) => {
     try {
         const arrayProduto = await verificPorIdProduto(idProduto) 
-        if (arrayProduto.lenth === 0 || quantidade <= 0) {
+        if (arrayProduto.length === 0 || quantidade <= 0) {
             return false
         }
         await SomaProduto(idProduto, quantidade)

@@ -19,8 +19,9 @@ export function authMiddleware(...allowedRoles) {
       }
       const decoded = jwt.verify(token, secret);
       req.user = decoded;
-
-      const roles = Array.isArray(decoded.Role) ? decoded.Role : [decoded.Role];
+      
+      const roles = Array.isArray(decoded.role) ? decoded.role : [decoded.role];
+      //const roles = Array.isArray(decoded.Role) ? decoded.Role : [decoded.Role];
       const hasPermission = roles.some((r) => allowedRoles.includes(r));
       if (!hasPermission) {
           return res.status(400).send("Vocẽ não tem permissão para acessar!!")
