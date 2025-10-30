@@ -16,7 +16,7 @@ export async function Login(req, res) {
             return res.status(401).send({ message: "E-mail ou senha invalido não encontrado!" });
         };
 
-        const token = jwt.sign({id: usuarioEncontrado._id, email: usuarioEncontrado.email}, process.env.ACESS_TOKEN_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({id: usuarioEncontrado._id, email: usuarioEncontrado.email}, process.env.JWT_SECRET, { expiresIn: '7d' });
         return res.status(200).send({ message: "Login efetuado com sucesso!", token: token });
 
     } catch (error) {
