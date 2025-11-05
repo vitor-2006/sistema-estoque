@@ -1,14 +1,16 @@
 import { Produto } from "../models/schemaProduto.js";
 
 export default {
-  createProduto(data) {
+   create(data) {
     return Produto.create(data);
   },
   somaProduto(id, data) {
-    return Produto.findByIdAndUpdate(id, data, {
+    const novoProduto = Produto.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
     });
+    // console.log(novoProduto)
+    return novoProduto
   },
   menosProduto(id, data) {
     return Produto.findByIdAndUpdate(id, data, {
@@ -16,4 +18,7 @@ export default {
       runValidators: true,
     });
   },
+  findProductById(id){
+    return Produto.findById(id)
+  }
 };

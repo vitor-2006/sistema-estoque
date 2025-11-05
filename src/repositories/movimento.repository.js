@@ -1,4 +1,5 @@
 import { Movimento } from "../models/schemaMov.js";
+import produtoRepo from './produto.repository.js'
 
 export default {
   entradaMov(data) {
@@ -9,5 +10,5 @@ export default {
   },
   historico(idProduto) {
     return Movimento.find({ idProduto })
-  }
+  },
 };

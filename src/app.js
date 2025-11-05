@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use('/api', userRoutes);
 app.use('/produto', produtoRoutes)
-app.use('/estoque', movimentoRoutes)
+app.use('/movimento', movimentoRoutes)
 
 app.use(errorMiddleware);
 

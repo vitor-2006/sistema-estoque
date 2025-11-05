@@ -4,8 +4,8 @@ export default {
   create(data) {
     return User.create(data);
   },
-  login(email) {
-    return User.findOne(email)
+  login(data) {
+    return User.findOne(data)
   },
   findAll() {
     return User.find();
