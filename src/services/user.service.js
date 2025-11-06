@@ -27,7 +27,6 @@ export default {
 
   async loginUser(data) {
     const existing = await repo.findByEmail(data.email);
-    console.log(existing);
     if (!existing) throw createError("usuário não encontrado.", 404);
     const comparePassword = hash.compareHashedPassword(
       data.password,
