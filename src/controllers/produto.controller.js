@@ -13,7 +13,6 @@ export default {
   async get(req, res, next) {
     try {
       const produto = await produtoService.getProduto(req.params.id);
-      console.log("controller")
       res.json(produto);
     } catch (error) {
       next(error);

@@ -9,7 +9,6 @@ export default {
       new: true,
       runValidators: true,
     });
-    // console.log(novoProduto)
     return novoProduto
   },
   menosProduto(id, data) {
@@ -19,7 +18,6 @@ export default {
     });
   },
   findProductById(id){
-    console.log("repository")
     return Produto.findById(id)
   }
 };

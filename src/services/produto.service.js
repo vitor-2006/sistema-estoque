@@ -37,7 +37,6 @@ export default {
     async getProduto(id) {
       const produto = await repo.findProductById(id);
       if (!produto) throw createError("produto não encontrado.", 404);
-      console.log("service")
       return produto;
     },
 };
