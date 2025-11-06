@@ -4,9 +4,6 @@ import produtoService from './produto.service.js'
 
 export default {
   async entradaMovimento(data) {
-    console.log(data)
-
-
     await produtoService.soma(data)
 
     return await repo.entradaMov({
@@ -19,6 +16,7 @@ export default {
 
   async saidaMovimento(data) {
     await produtoService.menos(data)
+    
     return await repo.saidaMov({
       idProduto: data.idProduto.trim(),
       tipo: "saida",
@@ -27,8 +25,8 @@ export default {
   },
 
   async historico(data) {
-    const movimento = await repo.findById(data.id);
-    if (!movimento) throw createError("Usuário não encontrado.", 404);
+    const movimento = await repo.historico(data.idProduto);
+    if (!movimento) throw createError("item não encontrado.", 404);
     return movimento;
   },
 };

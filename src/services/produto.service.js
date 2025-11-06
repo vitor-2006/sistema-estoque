@@ -14,7 +14,6 @@ export default {
   async soma(data) {
     const produto = await repo.findProductById(data.idProduto)
     if (!produto) throw createError('Produto não encontrado.', 404);
-    console.log(produto.quantidade)
     const soma = produto.quantidade += data.quantidade
     
     const payload = { ...produto,
@@ -27,8 +26,18 @@ export default {
   async menos(data) {
     const produto = await repo.findProductById(data.idProduto)
     if (!produto) throw createError('Produto não encontrado.', 404);
-    const payload = { ...produto }
-    payload.quantidade =- data.quantidade
+    const menos = produto.quantidade -= data.quantidade
+    
+    const payload = { ...produto,
+      quantidade: menos
+     }
     return await repo.menosProduto(data.idProduto, payload)
-  }
+  },
+
+    async getProduto(id) {
+      const produto = await repo.findProductById(id);
+      if (!produto) throw createError("produto não encontrado.", 404);
+      console.log("service")
+      return produto;
+    },
 };

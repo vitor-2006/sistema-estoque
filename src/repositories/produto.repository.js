@@ -19,6 +19,7 @@ export default {
     });
   },
   findProductById(id){
+    console.log("repository")
     return Produto.findById(id)
   }
 };
