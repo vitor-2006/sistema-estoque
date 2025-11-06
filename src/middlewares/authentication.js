@@ -35,7 +35,7 @@ export function requireRole(...allowedRoles) {
       return;
     }
 
-    const userRoles = Array.isArray(req.user.roles) ? req.user.roles : [];
+    const userRoles = Array.isArray(req.user.role) ? req.user.role : [];
     const hasPermission = allowedRoles.some((role) => userRoles.includes(role));
 
     if (!hasPermission) {

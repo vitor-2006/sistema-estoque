@@ -1,6 +1,5 @@
 import movimentoController from "../controllers/movimento.controller.js";
-import { authMiddleware, requireRole } from "../middlewares/authentication.js";
-import { ensureValidId } from '../middlewares/validate.middleware.js';
+import { authMiddleware } from "../middlewares/authentication.js";
 import express from 'express'
 
 const movimentoRoutes = express.Router()
