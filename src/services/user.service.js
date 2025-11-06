@@ -22,6 +22,7 @@ export default {
       name: data.name.trim(),
       email: data.email.trim().toLowerCase(),
       password: hashedPassword,
+      role: data.role
     });
   },
 
