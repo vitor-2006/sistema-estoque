@@ -1,4 +1,4 @@
-import { Movimento } from "../models/schemaMov.js";
+import { Movimento } from "../models/movimento.model.js";
 
 export default {
   entradaMov(data) {

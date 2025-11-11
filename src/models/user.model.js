@@ -11,12 +11,14 @@ const UserSchema = new mongoose.Schema({
         require: true,
         unique: true,
         lowercase: true,
-        trim: true
+        trim: true,
+        match: [/^\S+@\S+\.\S+$/, 'Invalid email']
     },
     password: {
         type: String,
         require: true,
-        minlength: 8
+        minlength: 8,
+        select: false
     },
     role: {
         type: [String],

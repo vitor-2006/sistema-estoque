@@ -1,4 +1,4 @@
-import { Produto } from "../models/schemaProduto.js";
+import { Produto } from "../models/produto.model.js";
 
 export default {
    create(data) {

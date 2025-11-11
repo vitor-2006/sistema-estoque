@@ -1,5 +1,4 @@
-import { User } from "../models/schemaUser.js"
-
+import { User } from "../models/user.model.js";
 export default {
   create(data) {
     return User.create(data);
