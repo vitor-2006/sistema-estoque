@@ -13,13 +13,3 @@ userRouter.put('/users/:id', authMiddleware(), requireRole("ADMIN"), ensureValid
 userRouter.delete('/users/:id', authMiddleware(), requireRole("ADMIN"), ensureValidId, userController.remove);
 
 export default userRouter;
-
-// import express from 'express'
-// import { Register } from '../user/register.js';
-// import { Login } from '../user/login.js';
-// const userRoutes = express.userRouter();
-
-// userRoutes.post('/Register', Register);
-// userRoutes.post('/Login', Login)
-
-// export{ userRoutes }
