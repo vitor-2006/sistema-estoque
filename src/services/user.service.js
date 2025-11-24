@@ -29,11 +29,14 @@ export default {
   async loginUser(data) {
     const existing = await repo.findByEmail(data.email);
     if (!existing) throw createError("usuário não encontrado.", 404);
+
     const comparePassword = hash.compareHashedPassword(
       data.password,
       existing.password
     );
+
     if (!comparePassword) throw createError("dados incorretos.", 400);
+
     const userEncontrado = existing;
     const payload = {
       userId: userEncontrado._id,
