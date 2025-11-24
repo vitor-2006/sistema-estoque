@@ -6,7 +6,7 @@ export default {
   async entradaMovimento(data) {
     await produtoService.soma(data)
 
-    return await repo.entradaMov({
+    return await repo.Mov({
       idProduto: data.idProduto.trim(),
       tipo: "entrada",
       quantidade: data.quantidade,
@@ -17,7 +17,7 @@ export default {
   async saidaMovimento(data) {
     await produtoService.menos(data)
     
-    return await repo.saidaMov({
+    return await repo.Mov({
       idProduto: data.idProduto.trim(),
       tipo: "saida",
       quantidade: data.quantidade,

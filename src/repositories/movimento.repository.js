@@ -1,11 +1,8 @@
 import { Movimento } from "../models/movimento.model.js";
 
 export default {
-  entradaMov(data) {
+  Mov(data) {
     return Movimento.create(data);
-  },
-  saidaMov(data) {
-    return Movimento.create(data)
   },
   historico(idProduto) {
     return Movimento.find({ idProduto })
