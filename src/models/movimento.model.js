@@ -6,8 +6,10 @@ const MovimentoSchema = new mongoose.Schema({
         required: true
     },
     tipo: {
-        type: String,
-        required: true
+        type: [String],
+        enum: ["entrada", "saída"],
+        default: "entrada",
+        require: true
     },
     quantidade: {
         type: Number,

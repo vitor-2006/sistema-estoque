@@ -1,5 +1,6 @@
 const { bootstrapTest } = require('../src/__tests__/testUtils.js');
 const User = require('../src/models/user.model.js').default;
+const Movimento = require('../src/models/movimento.model.js').default
 
 let dbInstance;
 let mongoServer;
@@ -13,6 +14,7 @@ beforeAll(async () => {
 
 afterEach(async () => {
   await User?.deleteMany({});
+  await Movimento?.deleteMany({});
 });
 
 afterAll(async () => {

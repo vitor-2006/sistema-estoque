@@ -20,7 +20,7 @@ export default {
       quantidade: soma
      }
 
-    return await repo.somaProduto(data.idProduto, payload)
+    return await repo.newProduto(data.idProduto, payload)
   },
 
   async menos(data) {
@@ -31,7 +31,7 @@ export default {
     const payload = { ...produto,
       quantidade: menos
      }
-    return await repo.menosProduto(data.idProduto, payload)
+    return await repo.newProduto(data.idProduto, payload)
   },
 
     async getProduto(id) {
