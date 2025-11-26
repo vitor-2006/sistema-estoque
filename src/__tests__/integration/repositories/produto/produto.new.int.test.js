@@ -13,7 +13,7 @@ beforeEach(async () => {
 
 
 describe('when we try to add to a product ', () => {
-  it('it adds by an X ammount', async () => {
+  it('it adds or subtracts by an X ammount', async () => {
     const newProduto = {
       quantidade: 14
     }
