@@ -12,7 +12,7 @@ beforeEach(async () => {
 });
 
  
-describe("when we try to update a product that doesn't exist", () => {
+describe("when we try look for a move of an product that doesn't exist", () => {
     it("throws a validation error", async () => {
       const movimento = await Movimento.create(movData)
       const data = {
@@ -25,4 +25,21 @@ describe("when we try to update a product that doesn't exist", () => {
         })
       ).rejects.toThrow("item não encontrado.");
     });
+});
+
+describe("when we search for an product", () => {
+  it("gives all moves with that product id", async () => {
+    const movimento = await Movimento.create(movData)
+    const data = {
+      idProduto: "12345"
+    }
+
+    const hist = await movimentoService.historico({
+      idProduto: data.idProduto,
+    })
+
+    console.log(hist)
+
+    expect(hist[0].idProduto).toBe("12345")
+  });
 });

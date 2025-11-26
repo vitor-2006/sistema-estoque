@@ -26,7 +26,7 @@ export default {
 
   async historico(data) {
     const movimento = await repo.historico(data.idProduto);
-    if (!movimento) throw createError("item não encontrado.", 404);
+    if (!movimento || movimento.length === 0) throw createError("item não encontrado.", 404);
     return movimento;
   },
 };
