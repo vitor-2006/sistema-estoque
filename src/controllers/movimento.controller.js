@@ -22,7 +22,7 @@ export default {
   async historico(req, res, next) {
     try {
         const movimento = await movimentoService.historico(req.params);
-        res.status(201).json(movimento);
+        res.status(200).json(movimento);
     } catch (error) {
       next(error);
     }

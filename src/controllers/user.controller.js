@@ -13,7 +13,7 @@ export default {
   async login(req, res, next) {
     try {
       const user = await userService.loginUser(req.body);
-      res.status(201).json(user);
+      res.status(200).json(user);
     } catch (error) {
       next(error)
     }
@@ -22,7 +22,7 @@ export default {
   async list(req, res, next) {
     try {
       const users = await userService.listUsers();
-      res.json(users);
+      res.status(200).json(users);
     } catch (error) {
       next(error);
     }
@@ -31,7 +31,7 @@ export default {
   async get(req, res, next) {
     try {
       const user = await userService.getUser(req.params.id);
-      res.json(user);
+      res.status(200).json(user);
     } catch (error) {
       next(error);
     }
@@ -40,7 +40,7 @@ export default {
   async update(req, res, next) {
     try {
       const user = await userService.updateUser(req.params.id, req.body);
-      res.json(user);
+      res.status(200).json(user);
     } catch (error) {
       next(error);
     }

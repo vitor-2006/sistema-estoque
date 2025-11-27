@@ -13,7 +13,7 @@ export default {
   async get(req, res, next) {
     try {
       const produto = await produtoService.getProduto(req.params.id);
-      res.json(produto);
+      res.status(200).json(produto);
     } catch (error) {
       next(error);
     }
