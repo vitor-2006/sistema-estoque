@@ -19,10 +19,7 @@ describe('when we try to search a move by the product id', () => {
 
     const createdUser =  await Movimento.create(movData)
 
-    console.log(createdUser)
-
     const searchMov = await movimentoRepository.historico(createdUser.idProduto);
-    console.log(searchMov)
     expect(searchMov[0]).toMatchObject({
         idProduto: "12345",
         tipo: ["entrada"],

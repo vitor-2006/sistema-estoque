@@ -38,8 +38,6 @@ describe("when we search for an product", () => {
       idProduto: data.idProduto,
     })
 
-    console.log(hist)
-
     expect(hist[0].idProduto).toBe("12345")
   });
 });
