@@ -3,11 +3,12 @@ import createError from "../utils/app-error.js";
 import hash from "../utils/hash-password.js";
 import jwt from "jsonwebtoken";
 
-function ensureValidPayload({ name, email, password }) {
+function ensureValidPayload({ name, email, password, confPass }) {
   if (!name?.trim()) throw createError("Nome é obrigatório.", 400);
   if (!email?.trim()) throw createError("E-mail é obrigatório.", 400);
   if (!email.includes("@")) throw createError("E-mail inválido.", 400);
   if (!password) throw createError("Senha é obrigatória.", 400);
+  if (!confPass) throw createError("é necessário confirmar a senha.", 400)
 }
 
 export default {
@@ -15,6 +16,8 @@ export default {
     ensureValidPayload(data);
     const existing = await repo.findByEmail(data.email);
     if (existing) throw createError("E-mail já cadastrado.", 409);
+
+    if (data.confPass != data.password) throw createError("senah inválida.", 400)
 
     const hashedPassword = hash.hashPassword(data.password);
 
