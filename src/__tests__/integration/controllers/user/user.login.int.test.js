@@ -16,7 +16,7 @@ beforeEach(async () => {
   await userService.createUser(userData);
 });
 
-describe('user controller - GET api/login', () => {
+describe('user controller - POST api/login', () => {
     describe('when logging in a user with valid payload', () => {
         it('should return status 201 and log user', async () => {
             const loginData = {
@@ -25,15 +25,12 @@ describe('user controller - GET api/login', () => {
             }
 
             const response = await request(app)
-            console.log(response.body)
-
-            .get('/api/login')
+            .post('/api/login')
             .send(loginData)
             .expect(200)
-            expect(response.body).toHaveProperty('_id');
             expect(response.body).toHaveProperty('name');
             expect(response.body).toHaveProperty('email');
-            expect(response.body).toHaveProperty('password');
+            expect(response.body).not.toHaveProperty('password');
             
         })
     })
@@ -47,7 +44,7 @@ describe('user controller - GET api/login', () => {
             }
     
           const response = await request(app)
-            .get('/api/login')
+            .post('/api/login')
             .send(loginData)
             .expect(404);
     

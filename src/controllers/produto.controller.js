@@ -4,7 +4,7 @@ export default {
   async create(req, res, next) {
     try {
       const produto = await produtoService.createProduto(req.body);
-      res.status(201).json(produto);
+      return res.status(201).json(produto);
     } catch (error) {
       next(error);
     }
@@ -13,7 +13,7 @@ export default {
   async get(req, res, next) {
     try {
       const produto = await produtoService.getProduto(req.params.id);
-      res.status(200).json(produto);
+      return res.status(200).json(produto);
     } catch (error) {
       next(error);
     }
