@@ -4,7 +4,9 @@ export default {
   async create(req, res, next) {
     try {
       const user = await userService.createUser(req.body);
-      return res.status(201).json(user);
+      return res.status(201).json({
+        message: "Usuário registrado com sucesso.",
+        user: user});
     } catch (error) {
       next(error);
     }
