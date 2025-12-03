@@ -11,6 +11,7 @@ beforeEach(async () => {
     name: 'rightUser',
     email: 'right@example.com',
     password: 'teste1234',
+    confPass: 'teste1234'
   };
 
   await userService.createUser(userData);
@@ -18,7 +19,7 @@ beforeEach(async () => {
 
 describe('user controller - POST api/login', () => {
     describe('when logging in a user with valid payload', () => {
-        it('should return status 201 and log user', async () => {
+        it('should return status 200 and log user', async () => {
             const loginData = {
                 email: 'right@example.com',
                 password: 'teste1234'

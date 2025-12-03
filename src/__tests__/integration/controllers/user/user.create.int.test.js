@@ -7,13 +7,15 @@ describe('user controller - POST api/register', () => {
             const userData = {
                 name: 'user',
                 email: 'user@email.com',
-                password: 'password123'
+                password: 'password123',
+                confPass: 'password123'
             }
 
             const response = await request(app)
             .post('/api/register')
             .send(userData)
             .expect(201)
+
             expect(response.body).toHaveProperty('_id');
             expect(response.body).toHaveProperty('name');
             expect(response.body).toHaveProperty('email');
@@ -27,6 +29,7 @@ describe('user controller - POST api/register', () => {
           const invalidData = {
             email: 'test@example.com',
             password: 'password123',
+            confPass: 'password123'
           };
     
           const response = await request(app)
@@ -42,6 +45,7 @@ describe('user controller - POST api/register', () => {
           const invalidData = {
             name: 'Test User',
             password: 'password123',
+            confPass: 'password123'
           };
     
           const response = await request(app)
@@ -58,6 +62,7 @@ describe('user controller - POST api/register', () => {
             name: 'Test User',
             email: 'invalid-email',
             password: 'password123',
+            confPass: 'password123'
           };
     
           const response = await request(app)
@@ -73,6 +78,7 @@ describe('user controller - POST api/register', () => {
           const invalidData = {
             name: 'Test User',
             email: 'test@example.com',
+            confPass: 'password123'
           };
     
           const response = await request(app)
@@ -83,12 +89,46 @@ describe('user controller - POST api/register', () => {
           expect(response.body).toHaveProperty('error');
           expect(response.body.error).toBe('Senha é obrigatória.');
         });
+
+        it('should return status 400 when password confirmation is missing', async () => {
+          const invalidData = {
+            name: 'Test User',
+            email: 'test@example.com',
+            password: 'password123'
+          };
+    
+          const response = await request(app)
+            .post('/api/register')
+            .send(invalidData)
+            .expect(400);
+    
+          expect(response.body).toHaveProperty('error');
+          expect(response.body.error).toBe('é necessário confirmar a senha.');
+        });
+
+        it('should return status 400 when password confirmation is wrong', async () => {
+          const invalidData = {
+            name: 'Test User',
+            email: 'test@example.com',
+            password: 'password123',
+            confPass: 'wrong123'
+          };
+    
+          const response = await request(app)
+            .post('/api/register')
+            .send(invalidData)
+            .expect(400);
+    
+          expect(response.body).toHaveProperty('error');
+          expect(response.body.error).toBe('senha inválida.');
+        });
     
         it('should return status 409 when email already exists', async () => {
           const userData = {
             name: 'First User',
             email: `duplicate-${Date.now()}@example.com`,
             password: 'password123',
+            confPass: 'password123'
           };
     
           // Create first user

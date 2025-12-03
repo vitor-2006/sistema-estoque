@@ -8,7 +8,7 @@ function ensureValidPayload({ name, email, password, confPass }) {
   if (!email?.trim()) throw createError("E-mail é obrigatório.", 400);
   if (!email.includes("@")) throw createError("E-mail inválido.", 400);
   if (!password) throw createError("Senha é obrigatória.", 400);
-  if (!confPass) throw createError("é necessário confirmar a senha.", 400)
+  if (!confPass) throw createError("é necessário confirmar a senha.", 400);
 }
 
 export default {
@@ -17,7 +17,7 @@ export default {
     const existing = await repo.findByEmail(data.email);
     if (existing) throw createError("E-mail já cadastrado.", 409);
 
-    if (data.confPass != data.password) throw createError("senah inválida.", 400)
+    if (data.confPass != data.password) throw createError("senha inválida.", 400);
 
     const hashedPassword = hash.hashPassword(data.password);
 

@@ -9,6 +9,7 @@ beforeEach(async () => {
     name: 'rightUser',
     email: 'right@example.com',
     password: 'teste1234',
+    confPass: 'teste1234'
   };
 
   await userService.createUser(userData);

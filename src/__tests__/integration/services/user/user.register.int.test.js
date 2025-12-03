@@ -7,6 +7,7 @@ beforeEach(async () => {
     name: 'rightUser',
     email: 'right@example.com',
     password: 'teste1234',
+    confPass: 'teste1234'
   };
 
   await userService.createUser(userData);
@@ -19,6 +20,7 @@ describe("when we try to register with an existing email", () => {
         name: 'rightUser',
         email: userData.email,
         password: "senhaErrada",
+        confPass: 'senhaErrada'
       })
     ).rejects.toThrow("E-mail já cadastrado.");
   });
@@ -30,6 +32,7 @@ describe("when we try to register with right credentials", () => {
           name: 'difUser',
           email: 'dif@example.com',
           password: "difpass",
+          confPass: 'difpass'
         })
 
         expect(register).toHaveProperty('_id');
