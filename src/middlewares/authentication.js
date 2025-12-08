@@ -16,7 +16,9 @@ export function authMiddleware() {
     }
 
     try {
-      req.user = jwt.verify(token, secret);
+      const decoded = jwt.verify(token, secret);
+      req.user = decoded;
+      req.userId = decoded.userId || decoded.id || decoded._id; // Extract userId
       next();
     } catch (error) {
       throw createError('Token inválido ou expirado.', 401);

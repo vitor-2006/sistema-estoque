@@ -25,6 +25,13 @@ const UserSchema = new mongoose.Schema({
         enum: ["ADMIN", "USER"],
         default: "USER",
         require: true
-      }
+    }
 })
+
+UserSchema.virtual('produto', {
+    ref: 'Produto',
+    localField: '_id',
+    foreignField: 'idUser'
+})
+
 export const User = mongoose.model( "User", UserSchema);

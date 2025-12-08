@@ -5,7 +5,7 @@ import { ensureValidId } from "../middlewares/validate.middleware.js";
 
 const produtoRoutes = express.Router()
 
-produtoRoutes.post('/criar', authMiddleware(), produtoController.create)
+produtoRoutes.post('/create', authMiddleware(), produtoController.create)
 produtoRoutes.get('/search/:id', authMiddleware(), ensureValidId, produtoController.get)
 
 export default produtoRoutes

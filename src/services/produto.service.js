@@ -2,13 +2,15 @@ import repo from '../repositories/produto.repository.js';
 import createError from '../utils/app-error.js';
 
 export default {
-  async createProduto(data) {
+  async createProduto(data, userId) {
+
     const createProduct =  await repo.create({
+      idUser: userId,
       nome: data.nome.trim(),
       quantidade: data.quantidade,
     });
     const findProductById = repo.findProductById(createProduct.id)
-     return findProductById
+    return findProductById
   },
 
   async soma(data) {

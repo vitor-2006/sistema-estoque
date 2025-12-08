@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 
 const MovimentoSchema = new mongoose.Schema({
     idProduto: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Produto' // Refers to the 'Produto' model
     },
     tipo: {
         type: [String],

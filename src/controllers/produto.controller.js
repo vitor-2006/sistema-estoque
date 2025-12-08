@@ -3,7 +3,7 @@ import produtoService from "../services/produto.service.js";
 export default {
   async create(req, res, next) {
     try {
-      const produto = await produtoService.createProduto(req.body);
+      const produto = await produtoService.createProduto(req.body, req.userId);
       return res.status(201).json(produto);
     } catch (error) {
       next(error);
