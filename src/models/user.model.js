@@ -29,9 +29,12 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.virtual("produto", {
-  ref: "Produto",
+  ref: "produtos",
   localField: "_id",
   foreignField: "idUser",
 });
+
+UserSchema.set("toJSON", { virtuals: true });
+UserSchema.set("toObject", { virtuals: true });
 
 export const User = mongoose.model("User", UserSchema);

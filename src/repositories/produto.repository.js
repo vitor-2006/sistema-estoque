@@ -1,4 +1,5 @@
 import { Produto } from "../models/produto.model.js";
+import { User } from "../models/user.model.js";
 
 export default {
   create(data) {
@@ -11,7 +12,13 @@ export default {
     });
     return novoProduto;
   },
-  findProductById(id) {
-    return Produto.findById(id);
+  // findProductById(id) {
+  //   return Produto.findById(id);
+  // },
+  async findProductByUser(data) {
+    const user = await User.findById(data);
+    if (!user) throw createError("usuário não encontrado.", 404);
+    await user.populate("produto")
+    return user.produto;
   },
 };

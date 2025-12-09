@@ -5,7 +5,7 @@ const MovimentoSchema = new mongoose.Schema(
     idProduto: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "Produto", // Refers to the 'Produto' model
+      ref: "produtos", // Refers to the 'Produto' model
       required: true,
     },
     idUser: {

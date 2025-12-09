@@ -18,9 +18,12 @@ const ProdutoSchema = new mongoose.Schema({
 });
 
 ProdutoSchema.virtual("movimento", {
-  ref: "Movimento",
+  ref: "movimentação",
   localField: "_id",
   foreignField: "idProduto",
 });
+
+ProdutoSchema.set("toJSON", { virtuals: true });
+ProdutoSchema.set("toObject", { virtuals: true });
 
 export const Produto = mongoose.model("produtos", ProdutoSchema);

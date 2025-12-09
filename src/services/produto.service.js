@@ -1,5 +1,6 @@
 import repo from "../repositories/produto.repository.js";
 import createError from "../utils/app-error.js";
+import { User } from "../models/user.model.js";
 
 export default {
   async createProduto(data, userId) {
@@ -33,9 +34,13 @@ export default {
     return await repo.newProduto(params, payload);
   },
 
-  async getProduto(id) {
-    const produto = await repo.findProductById(id);
-    if (!produto) throw createError("produto não encontrado.", 404);
-    return produto;
-  },
+  // async getProduto(id) {
+  //   const produto = await repo.findProductById(id);
+  //   if (!produto) throw createError("produto não encontrado.", 404);
+  //   return produto;
+  // },
+
+  async ProductByUser(userID) {
+    return await repo.findProductByUser(userID)
+  }
 };

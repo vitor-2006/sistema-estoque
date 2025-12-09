@@ -10,12 +10,21 @@ export default {
     }
   },
 
-  async get(req, res, next) {
+  // async get(req, res, next) {
+  //   try {
+  //     const produto = await produtoService.getProduto(req.params.id);
+  //     return res.status(200).json(produto);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
+  
+  async storage(req, res, next) {
     try {
-      const produto = await produtoService.getProduto(req.params.id);
-      return res.status(200).json(produto);
+      const produto = await produtoService.ProductByUser(req.userId)
+      return res.status(200).json(produto)
     } catch (error) {
-      next(error);
+      next(error)
     }
-  },
+  }
 };
