@@ -1,24 +1,34 @@
 import repo from "../repositories/movimento.repository.js";
 import createError from "../utils/app-error.js";
 import produtoService from './produto.service.js'
+import { Produto } from "../models/produto.model.js";
 
 export default {
-  async entradaMovimento(data) {
-    await produtoService.soma(data)
-
-    return await repo.Mov({
-      idProduto: data.idProduto.trim(),
+  async entradaMovimento(data, params, userId) {
+      const produto = await Produto.findById(params._id);
+      if (produto === null) throw createError("Produto não encontrado.", 404);
+      if (produto.idUser.toString() !== userId.toString()) throw createError("Você não tem permissão para modificar este produto.", 403);
+  
+      await produtoService.soma(data, params._id)
+  
+      return await repo.Mov({
+      idProduto: params._id,
+      idUser: userId,
       tipo: "entrada",
       quantidade: data.quantidade,
     });
-    
   },
 
-  async saidaMovimento(data) {
-    await produtoService.menos(data)
+  async saidaMovimento(data, params, userId) {
+    const produto = await Produto.findById(params._id);
+    if (!produto) throw createError("Produto não encontrado.", 404);
+    if (produto.idUser.toString() !== userId) throw createError("Você não tem permissão para modificar este produto.", 403);
+    
+    await produtoService.menos(data, params._id)
     
     return await repo.Mov({
-      idProduto: data.idProduto.trim(),
+      idProduto: params._id,
+      idUser: userId,
       tipo: "saida",
       quantidade: data.quantidade,
     });

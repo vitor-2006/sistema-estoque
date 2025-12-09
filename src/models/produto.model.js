@@ -4,7 +4,8 @@ const ProdutoSchema = new mongoose.Schema({
     idUser: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User' // Refers to the 'User' model
+        ref: 'User', // Refers to the 'User' model
+        required: true
     },
     nome: {
         type: String,
