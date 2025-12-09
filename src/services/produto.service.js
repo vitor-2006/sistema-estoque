@@ -1,6 +1,5 @@
 import repo from "../repositories/produto.repository.js";
 import createError from "../utils/app-error.js";
-import { User } from "../models/user.model.js";
 
 export default {
   async createProduto(data, userId) {
@@ -41,6 +40,27 @@ export default {
   // },
 
   async ProductByUser(userID) {
-    return await repo.findProductByUser(userID)
-  }
+    return await repo.findProductByUser(userID);
+  },
+
+  async updateProduto(data, id) {
+    const payload = { ...data };
+
+    Object.keys(payload).forEach((key) => {
+      if (payload[key] === undefined) delete payload[key];
+    });
+
+    if (Object.keys(payload).length === 0) {
+      throw createError("Nenhum campo informado para atualização.", 400);
+    }
+
+    const updated = await repo.updateById(id, payload);
+    if (!updated) throw createError("produto não encontrado.", 404);
+    return updated;
+  },
+
+  async removeProduto(id) {
+    const deleted = await repo.deleteById(id);
+    if (!deleted) throw createError("produto não encontrado.", 404);
+  },
 };

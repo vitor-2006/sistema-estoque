@@ -12,13 +12,26 @@ export default {
     });
     return novoProduto;
   },
-  // findProductById(id) {
-  //   return Produto.findById(id);
-  // },
+
+  findProductById(id) {
+    return Produto.findById(id);
+  },
+
   async findProductByUser(data) {
     const user = await User.findById(data);
     if (!user) throw createError("usuário não encontrado.", 404);
-    await user.populate("produto")
+    await user.populate("produto");
     return user.produto;
+  },
+
+  updateById(id, data) {
+    return Produto.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+  },
+
+  deleteById(id) {
+    return Produto.findByIdAndDelete(id);
   },
 };
