@@ -1,4 +1,4 @@
-import userService from '../services/user.service.js';
+import userService from "../services/user.service.js";
 
 export default {
   async create(req, res, next) {
@@ -6,7 +6,8 @@ export default {
       const user = await userService.createUser(req.body);
       return res.status(201).json({
         message: "Usuário registrado com sucesso.",
-        user: user});
+        user: user,
+      });
     } catch (error) {
       next(error);
     }
@@ -17,7 +18,7 @@ export default {
       const user = await userService.loginUser(req.body);
       return res.status(200).json(user);
     } catch (error) {
-      next(error)
+      next(error);
     }
   },
 

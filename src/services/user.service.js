@@ -17,7 +17,8 @@ export default {
     const existing = await repo.findByEmail(data.email);
     if (existing) throw createError("E-mail já cadastrado.", 409);
 
-    if (data.confPass != data.password) throw createError("senha inválida.", 400);
+    if (data.confPass != data.password)
+      throw createError("senha inválida.", 400);
 
     const hashedPassword = hash.hashPassword(data.password);
 
@@ -25,7 +26,7 @@ export default {
       name: data.name.trim(),
       email: data.email.trim().toLowerCase(),
       password: hashedPassword,
-      role: data.role
+      role: data.role,
     });
   },
 

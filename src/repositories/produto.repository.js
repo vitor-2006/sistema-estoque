@@ -1,7 +1,7 @@
 import { Produto } from "../models/produto.model.js";
 
 export default {
-   create(data) {
+  create(data) {
     return Produto.create(data);
   },
   newProduto(id, data) {
@@ -9,9 +9,9 @@ export default {
       new: true,
       runValidators: true,
     });
-    return novoProduto
+    return novoProduto;
   },
-  findProductById(id){
-    return Produto.findById(id)
-  }
+  findProductById(id) {
+    return Produto.findById(id);
+  },
 };

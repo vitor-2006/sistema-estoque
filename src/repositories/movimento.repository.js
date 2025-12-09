@@ -5,6 +5,6 @@ export default {
     return Movimento.create(data);
   },
   historico(idProduto) {
-    return Movimento.find({ idProduto })
+    return Movimento.find({ idProduto });
   },
 };
