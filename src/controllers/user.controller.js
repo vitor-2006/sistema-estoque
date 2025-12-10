@@ -42,7 +42,7 @@ export default {
 
   async update(req, res, next) {
     try {
-      const user = await userService.updateUser(req.params.id, req.body);
+      const user = await userService.updateUser(req.userId, req.body);
       return res.status(200).json(user);
     } catch (error) {
       next(error);
@@ -51,7 +51,7 @@ export default {
 
   async remove(req, res, next) {
     try {
-      await userService.removeUser(req.params.id);
+      await userService.removeUser(req.userId);
       return res.status(204).end();
     } catch (error) {
       next(error);

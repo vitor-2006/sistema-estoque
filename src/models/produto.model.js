@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Movimento } from "./movimento.model.js";
 
 const ProdutoSchema = new mongoose.Schema({
   idUser: {
@@ -15,6 +16,10 @@ const ProdutoSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  preco: {
+    type: Number,
+    required: true,
+  },
 });
 
 ProdutoSchema.virtual("movimento", {
@@ -25,5 +30,13 @@ ProdutoSchema.virtual("movimento", {
 
 ProdutoSchema.set("toJSON", { virtuals: true });
 ProdutoSchema.set("toObject", { virtuals: true });
+
+ProdutoSchema.pre("findOneAndDelete", async function (next) {
+  const produto = await this.model.findOne(this.getQuery());
+  if (produto) {
+    await Movimento.deleteMany({ idProduto: produto._id });
+  }
+  next();
+});
 
 export const Produto = mongoose.model("produtos", ProdutoSchema);

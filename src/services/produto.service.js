@@ -1,15 +1,24 @@
 import repo from "../repositories/produto.repository.js";
 import createError from "../utils/app-error.js";
 
+function ensureValidPayload({ nome, quantidade, preco }) {
+  if (!nome?.trim()) throw createError("Nome é obrigatório.", 400);
+  if (!quantidade) throw createError("quantidade é obrigatório.", 400);
+  if (!preco) throw createError("preço é obrigatório.", 400);
+  if (isNaN(quantidade)) throw createError("quantidade inválida.", 400);
+  if (isNaN(preco)) throw createError("preço inválido.", 400);
+}
+
 export default {
   async createProduto(data, userId) {
+    ensureValidPayload(data);
     const createProduct = await repo.create({
       idUser: userId,
       nome: data.nome.trim(),
-      quantidade: data.quantidade,
+      quantidade: parseInt(data.quantidade),
+      preco: Number(data.preco).toFixed(2),
     });
-    const findProductById = repo.findProductById(createProduct.id);
-    return findProductById;
+    return createProduct
   },
 
   async soma(data, params) {

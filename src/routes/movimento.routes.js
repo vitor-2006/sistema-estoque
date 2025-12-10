@@ -6,6 +6,6 @@ const movimentoRoutes = express.Router()
 
 movimentoRoutes.post('/entrada/:_id', authMiddleware(), movimentoController.entrada)
 movimentoRoutes.post('/saida/:_id', authMiddleware(), movimentoController.saida)
-movimentoRoutes.get('/historico/:idProduto', authMiddleware(), movimentoController.historico)
+movimentoRoutes.get('/historico/:_id', authMiddleware(), movimentoController.historico)
 
 export default movimentoRoutes

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Produto } from "./produto.model.js";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -36,5 +37,13 @@ UserSchema.virtual("produto", {
 
 UserSchema.set("toJSON", { virtuals: true });
 UserSchema.set("toObject", { virtuals: true });
+
+UserSchema.pre("findOneAndDelete", async function (next) {
+  const user = await this.model.findOne(this.getQuery());
+  if (user) {
+    await Produto.deleteMany({ idUser: user._id });
+  }
+  next();
+});
 
 export const User = mongoose.model("User", UserSchema);

@@ -42,10 +42,10 @@ export default {
     });
   },
 
-  async historico(data) {
-    const movimento = await repo.historico(data.idProduto);
-    if (!movimento || movimento.length === 0)
-      throw createError("item não encontrado.", 404);
+  async historico(params) {
+    const movimento = await repo.historico(params._id);
+    if (!movimento) throw createError("produto não encontrado.", 404);
+    if (movimento.length === 0) throw createError("esse produto não possui movimentações", 404)
     return movimento;
   },
 };
