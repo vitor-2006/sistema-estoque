@@ -20,6 +20,7 @@ export default {
       idUser: userId,
       tipo: "entrada",
       quantidade: data.quantidade,
+      valor: produto.preco *= data.quantidade
     });
   },
 
@@ -39,6 +40,7 @@ export default {
       idUser: userId,
       tipo: "saida",
       quantidade: data.quantidade,
+      valor: produto.preco *= data.quantidade
     });
   },
 

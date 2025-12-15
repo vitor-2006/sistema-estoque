@@ -5,6 +5,7 @@ export default {
   create(data) {
     return Produto.create(data);
   },
+  
   newProduto(id, data) {
     const novoProduto = Produto.findByIdAndUpdate(id, data, {
       new: true,

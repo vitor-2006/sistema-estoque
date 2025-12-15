@@ -22,6 +22,10 @@ const MovimentoSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    valor: {
+      type: Number,
+      required:true
+    }
   },
   {
     timestamps: true,
