@@ -73,7 +73,7 @@ export default {
   async updateUser(id, data) {
     const payload = { ...data };
 
-    const user = await repo.findByEmail(payload.email);
+    const user = await repo.findById(id);
     if (!user) {
       throw createError("usuário não encontrado", 404);
     }
