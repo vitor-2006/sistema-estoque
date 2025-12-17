@@ -73,6 +73,20 @@ export default {
   async updateUser(id, data) {
     const payload = { ...data };
 
+    const user = await repo.findByEmail(payload.email);
+    if (!user) {
+      throw createError("usuário não encontrado", 404);
+    }
+
+    const validPass = hash.compareHashedPassword(
+      payload.confPass,
+      user.password
+    );
+
+    if (!validPass) {
+      throw createError("senha incorreta", 400);
+    }
+
     if (payload.email) {
       if (!payload.email.includes("@")) {
         throw createError("E-mail inválido.", 400);
@@ -86,6 +100,10 @@ export default {
 
     if (payload.name) {
       payload.name = payload.name.trim();
+    }
+
+    if (payload.password) {
+      payload.password = hash.hashPassword(payload.password);
     }
 
     Object.keys(payload).forEach((key) => {
