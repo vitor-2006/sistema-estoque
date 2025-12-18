@@ -87,6 +87,8 @@ export default {
       throw createError("senha incorreta", 400);
     }
 
+    delete payload.confPass;
+
     if (payload.email) {
       if (!payload.email.includes("@")) {
         throw createError("E-mail inválido.", 400);
@@ -107,7 +109,7 @@ export default {
     }
 
     Object.keys(payload).forEach((key) => {
-      if (payload[key] === undefined) delete payload[key];
+      if (payload[key] === undefined || payload[key] === null || payload[key] === "") delete payload[key];
     });
 
     if (Object.keys(payload).length === 0) {
